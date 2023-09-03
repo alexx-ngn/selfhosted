@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  ocis:
+    container_name: ocis
+    image: owncloud/ocis:latest
+    environment:
+      OCIS_INSECURE: "true"
+      OCIS_URL: $DOMAIN
+      OCIS_LOG_LEVEL: info
+    volumes:
+      - "./ocis.yaml:/etc/ocis/ocis.yaml"
+      - "./ocis-data:/var/lib/ocis"
+    restart: unless-stopped
+
+networks:
+  default:
+    name: $NETWORK
+    external: true

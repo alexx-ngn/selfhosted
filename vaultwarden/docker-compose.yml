@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    image: vaultwarden/server:alpine
+    restart: unless-stopped
+    environment:
+      - WEBSOCKET_ENABLED=true
+    env_file: .env
+    volumes:
+      - ./data/:/data/
+
+networks:
+  default:
+    name: $NETWORK
